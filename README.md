@@ -38,6 +38,9 @@
     faiss
     streamlit 
 
+
+
+
 <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 <img src="https://img.shields.io/badge/streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">
 
@@ -52,6 +55,8 @@
         D --> E[파인튜닝된 모델 호출 → 답변 생성]
         E --> F[사용자에게 출력]
         F -->|추가 질문| A
+
+
 
 
 ## WBS
