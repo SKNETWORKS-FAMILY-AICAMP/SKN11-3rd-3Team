@@ -1,10 +1,10 @@
-# SKN11-3rd-3Team
+## SKN11-3rd-3Team
+SK네트웍스 Family AI 캠프 11기 3차 프로젝트
 
-**SK네트웍스 Family AI 캠프 11기 3차 프로젝트**
+개발기간 : 25.05.07~25.05.15
 
-## Team 🐮🐶
-    
-- 팀원 소개
+## 1. Team 
+**팀명 :**
 
 
 |  |  |  |  |
@@ -14,84 +14,57 @@
 
 
 
-## 프로젝트 개요
-   - 프로젝트 명 : 
+## 2. Overview
+
    - 프로젝트 소개 : 보드게임 룰 설명과 보드게임 추천을 해주는 LLM 챗봇
    - 프로젝트 필요성(배경) : 보드게임 카페에서 직원을 채용할 때 많은 보드게임 지식이 요구되는데, 조건에 부합하는 직원을 찾는데 많은 어려움이 있습니다.
 
    - 프로젝트 목표 : 
-        - **사용자 시나리오**
-            - 게임 이름 입력 → 게임에 대한 소개 및 구성품 설명 → 이해가 안 되는 부분 질문 → 추가 설명
-            - 초반 진행 지원(플레이어 수 질문 → 세팅 안내 → 첫 라운드 진행 예시)
-            - 게임 중 예외 상황 질문 → 룰 기반 답변 → 차례·행동 안내
-        - **핵심 아이디어**
-            - 룰 정보는 Vector DB에 저장 → 검색(Retrieval)
-            - 대화 흐름, 말투, 예외 처리 로직은 파인튜닝된 LLM이 담당 → Generation
-            - 두 시스템 결합으로 유연성과 일관성 동시 확보
-
-
-## 기술 스택 & 사용한 모델 (임베딩 모델, LLM)
-
-    python
-    llama2 70b
-    bge-m3
-    faiss
-    streamlit 
-
-<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-<img src="https://img.shields.io/badge/streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">
 
 
 
-## 시스템 아키텍처
-
-    graph TD
-        A[사용자 질문 입력] --> B[RAG: Vector DB 검색]
-        B --> C[보드게임 룰 청크 수집]
-        C --> D[템플릿 기반 Prompt 생성]
-        D --> E[파인튜닝된 모델 호출 → 답변 생성]
-        E --> F[사용자에게 출력]
-        F -->|추가 질문| A
+## 3. 기술 스택 & 사용한 모델 (임베딩 모델, LLM)
+| Language | Development | Embedding Model | Vector DB | LLM Model | Demo | Collaboration Tool |
+|----------|-------------|------------------|-----------|-----------|------|---------------------|
+| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | ![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)<br>![Colab](https://img.shields.io/badge/Google%20Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)<br>![RunPod](https://img.shields.io/badge/RunPod-8A2BE2?style=for-the-badge) | ![Hugging Face](https://img.shields.io/badge/HuggingFace-FFD21F?style=for-the-badge&logo=huggingface&logoColor=black)<br>[](#) | ![FAISS](https://img.shields.io/badge/FAISS-009688?style=for-the-badge) | ![Qwen](https://img.shields.io/badge/OpenChat%20V3-4285F4?style=for-the-badge&logo=google&logoColor=white)<br> | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) | ![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)<br>![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)<br>![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white) |
 
 
-## WBS
-
-| 일시 | 작업 항목 | 
-| --- | --- | 
-| 5월 12일 | 기능 구조 설계, 데이터 수집 | 
-| 5월 13일 | 파인튜닝, 데이터 임베딩 | 
-| 5월 14일 | streamlit, readme 작성 | 
-| 5월 15일 | 전체 시스템 테스트 및 구동 | 
-
-
-## 요구사항 명세서
-
-1. **게임 룰 문서 수집 및 청크화**
-    - 각 보드게임별 원본 룰 문서(텍스트) 확보
-    - 섹션별(구성품, 목적, 준비, 진행 순서, 행동, 예외 상황, 종료 조건, 확장팩 등)로 200~400 토큰 단위 분할
-    - 메타데이터(`game_id`, `section`, `priority`) 부여
-
-
-## 수집한 데이터 및 전처리 요약
+## 4. 시스템 아키텍처
 
 
 
-## DB 연동 구현 코드
+## 5. WBS
 
 
 
-## 테스트 계획 및 결과 보고서
 
-
-## 진행 과정 중 프로그램 개선 노력
-
-
-
-## 수행결과(테스트/시연 페이지)
+## 6. 요구사항 명세서
 
 
 
-## 한 줄 회고
+## 7. 수집한 데이터 및 전처리 요약
+[데이터 수집]
+
+[데이터 전처리]
+
+
+
+
+## 8. DB 연동 구현 코드
+
+
+
+## 9. 테스트 계획 및 결과 보고서
+
+
+## 10. 성능 개선 노력
+
+
+## 11. 시연 페이지
+
+## 12. 추후 개선점
+
+## 13. 한 줄 회고
 
 | 김정원 |  | 
 | --- | --- | 
