@@ -30,7 +30,8 @@ SK네트웍스 Family AI 캠프 11기 3차 프로젝트
 
 
 ## 4. 시스템 아키텍처
-![제목 없는 다이어그램 drawio (2)](https://github.com/user-attachments/assets/0a8d6fec-eb8d-4ba4-8d00-faee352d1e84)
+
+![diagram](https://github.com/user-attachments/assets/f3a87011-9285-41a3-9932-b20db7992b11)
 
 
 
