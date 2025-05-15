@@ -9,33 +9,38 @@
 
 ### 👤 팀원
 <table>
-  <thead>
+  <tr>
     <td align="center">
-      <a href="https://github.com/Kimjeongwon12">
-        <img src=""/><br /><hr/>
-        김정원
-      </a><br />
+      <img src="https://github.com/user-attachments/assets/f85c63c4-9587-430a-875e-22160c64e311" width="120" />
     </td>
     <td align="center">
-      <a href="https://github.com/minjung2266">
-        <img src=""/><br /><hr/>
-        이민정
-      </a><br />
+      <img src="https://github.com/user-attachments/assets/95a46ce0-92d4-4dcd-9db1-f15532106d31" width="120" />
     </td>
     <td align="center">
-      <a href="https://github.com/Minor1862">
-        <img src=""/><br /><hr/>
-        정민호
-      </a><br />
+      <img src="https://github.com/user-attachments/assets/ec4fcead-4222-49ea-87fa-e9272894ded6" width="120" />
     </td>
     <td align="center">
-      <a href="https://github.com/junoaplus">
-        <img src=""/><br /><hr/>
-        황준호
-      </a><br />
+      <img src="https://github.com/user-attachments/assets/e5b7621f-11e9-42c0-959f-86100ad959ee" width="120" />
     </td>
-  </thead>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Kimjeongwon12">김정원</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/minjung2266">이민정</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Minor1862">정민호</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/junoaplus">황준호</a>
+    </td>
+  </tr>
 </table>
+
+
+
 
 <br/>
 
@@ -218,15 +223,12 @@ def download_naver_blog_content(url, save_folder):
     },
 ```
 
-## 8. DB 연동 구현 코드
-```
-```
-
+## 8. DB 연동 구현 코드 (링크)
+- DB 연동 구현 코드 : [url](https://drive.google.com/drive/folders/1ggLn33w5k5kioylWpcgxgDyhC-NQ5W_3?usp=sharing)
 
 
 ## 9. 테스트 계획 및 결과 보고서
-1. **LoRA 파라미터 조정** :
-
+(상황별 사진 첨부)
 
 
 ## 10. 성능 개선 노력
@@ -235,22 +237,43 @@ def download_naver_blog_content(url, save_folder):
 2. **RAG 모델 실험** :
 다양한 llm 모델 (openchat, tinyllama, koalphaca)를 비교하여 응답 성능을 개선
 
-3. **fine tunning 성능 개선** 
+3. **fine tunning 성능 개선**
+
+**[파인튜닝 모델]**
+- base model: gpt-3.5-turbo-0125
+- training method: Supervised Fine-Tuning (SFT)
+- train token: 3,992,712 tokens
+- output model : ft:gpt-3.5-turbo-0125:tset::BX2RnWfq
   : 초기에는 한국어에 특화된 오픈소스 모델인 KoAlpaca를 활용해 파인튜닝을 진행하였으나, 실제 추론 결과에서 질문과 무관한 답변을 생성하거나, 규칙과 동떨어진 응답을 출력하는 문제가 발생하였습니다.
 ```
 # koAlpaca 사용
 [질문]: 이 게임의 규칙을 설명해줘
 [최종 응답]: 이 게임은 가족들과 함께하는 따뜻한 보드게임입니다. 카드를 섞고 나누며 서로의 감정을 나누는 것이 핵심입니다. 승패보다는 모두가 즐겁게 참여하는 것이 중요합니다. 점수를 계산할 필요는 없으며, 규칙은 자유롭게 정하면 됩니다. 웃음과 배려가 가장 중요한 규칙입니다.
 ```
+이에 따라 안정적인 언어 이해 및 규칙 기반 응답 생성을 위해 gpt-3.5-turbo를 활용한 파인튜닝을 진행했습니다.
 ```
 # gpt3.5-turbo 사용
-[최종 응답]: 이 게임은 '뱅'이라는 서부 총격전을 소재로 한 보드게임입니다. 게임의 목적은 보안관, 부관, 무법자, 배신자 중 누군가가 목표를 이루면 게임에서 승리하게 됩니다. 총알 토큰(생명)을 모두 잃은 사람은 게임에서 탈락하게 됩니다. 게임의 설정은 게임 인원에 따라 다르며, 3인부터 7인까지 다양한 직업 구성이 있습니다.
-
-게임의 진행은 간단히 설명하자면 다음과 같습니다.
+[최종 응답]: 이 게임은 '뱅'이라는 서부 총격전을 소재로 한 보드게임입니다. 게임의 목적은 보안관, 부관, 무법자, 배신자 중 누군가가 목표를 이루면 게임에서 승리하게 됩니다. 총알 토큰(생명)을 모두 잃은 사람은 게임에서 탈락하게 됩니다. 
+(중략)
 ...
 ```
 
+```  
+# 파인튜닝 설정
+training_args = TrainingArguments(
+    output_dir='./fine_tuned_model',
+    num_train_epochs=5,
+    per_device_train_batch_size=2,
+    gradient_accumulation_steps=8,
+    learning_rate=5e-5,
+    fp16=True,
+    logging_dir='./logs',
+    logging_steps=10,
+    save_steps=500,
+    save_total_limit=3,
+)
 
+```
 
 ## 11. 시연 페이지
 
