@@ -4,8 +4,8 @@
 ---
 
 ## 1. 팀 소개
-- 팀명 : Battle of Minds | devil's plan | 타짜
-- 서비스명 : 보디 |두봇 | 보봇
+- 팀명 : Devil's plan
+- 서비스명 : 🤖 보봇
 
 
 ### 👤 팀원
@@ -44,17 +44,17 @@
 ## 2. Overview
 
   #### 📖 프로젝트 소개 
-"보디"는 보드게임 룰 설명과 추천 기능을 제공하는 LLM 기반 챗봇입니다. 챗봇은 사용자의 질문에 따라 게임 규칙을 설명하거나 취향에 맞는 게임을 추천해줍니다.
+보드게임 봇 "보봇"은 보드게임 룰 설명과 추천 기능을 제공하는 LLM 기반 챗봇입니다. 챗봇은 사용자의 질문에 따라 게임 규칙을 설명하거나 취향에 맞는 게임을 추천해줍니다.
 
 #### ⭐ 프로젝트 필요성
 <table>
   <tr>
     <td>초보자들의 게임 선택 장애</td>
-    <td>보드게임의 대중화로 다양한 게임이 출시되고 있지만, 초보 이용자들은 복잡한 룰을 이해하거나 자신의 취향에 맞는 게임을 고르는 데 어려움을 겪는다.</td>
+    <td>보드게임의 대중화로 다양한 게임이 출시되고 있지만, 초보 이용자들은 복잡한 룰을 이해하거나 자신의 취향에 맞는 게임을 고르는 데 어려움을 겪음</td>
   </tr>
   <tr>
     <td>보드게임 카페의 인력 문제</td>
-    <td>보드게임 카페에서는 다양한 게임을 설명하고 추천할 수 있는 직원을 필요로 하지만, 폭넓은 게임 지식을 갖춘 인력을 채용하기란 쉽지 않다.</td>
+    <td>보드게임 카페에서는 다양한 게임을 설명하고 추천할 수 있는 직원을 필요로 하지만, 폭넓은 게임 지식을 갖춘 인력을 채용하기란 쉽지 않음</td>
   </tr>
 </table>
 
@@ -85,9 +85,9 @@
 | **Development**     | ![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)<br>![Colab](https://img.shields.io/badge/Google%20Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)<br>![RunPod](https://img.shields.io/badge/RunPod-8A2BE2?style=for-the-badge) |
 | **Embedding Model** | ![Hugging Face](https://img.shields.io/badge/HuggingFace-FFD21F?style=for-the-badge&logo=huggingface&logoColor=black) |
 | **Vector DB**       | ![FAISS](https://img.shields.io/badge/FAISS-009688?style=for-the-badge) |
-| **LLM Model**       | ![Qwen](https://img.shields.io/badge/OpenChat%20V3-4285F4?style=for-the-badge&logo=google&logoColor=white) |
-| **Demo**            | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) |
-| **Collaboration Tool** | ![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)<br>![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+| **LLM Model**       | ![gpt-3.5-turbo](https://img.shields.io/badge/gpt--3.5-4B91FF?style=for-the-badge&logo=openai&logoColor=white) |
+| **Demo**            | ![Gradio](https://img.shields.io/badge/Gradio-FF4B4B?style=for-the-badge&logo=gradio&logoColor=white) |
+| **Collaboration Tool** | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 
 ## 4. 시스템 아키텍처
@@ -200,11 +200,12 @@
 - 비용 절감을 위해 다른 모델 적용 방법을 모색
 - 꼬리질문 대응에 특화된 LoRA 개선
 
-## 13. 한 줄 회고
+## 13. 한 줄 회고                                                                                                               
+>  김정원 :                                                                                                                                            
 
-| 김정원 |  | 
-| --- | --- | 
-| **이민정** | 여러 모델을 바꿔가며 RAG의 성능을 확인하는 과정에서 단순히 성능이 좋다는 모델보다는 내가 필요한 목적에 따라 알맞게 모델을 선택해야 함을 알게 되었습니다.  | 
-| **정민호** |  | 
-| **황준호** |  | 
+>  이민정 : 여러 모델을 바꿔가며 RAG의 성능을 확인하는 과정에서 단순히 성능이 좋다는 모델보다는 내가 필요한 목적에 따라 알맞게 모델을 선택해야 함을 알게 되었습니다. 또 gpu 자원과 시간이 한정되어 있어 여러번 테스트 해보지 못한점이 아쉬움이 남습니다.
+
+>  정민호 :                                                                                         
+
+>  황준호 : 
 
