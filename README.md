@@ -74,6 +74,33 @@
   </tr>
 </table>
 
+#### 📔 데이터 구조
+```
+├── data
+│   ├── crawling
+│   │   └── crawling.py
+│   ├── embedding, vectordb
+│   │   ├── game_recommendation_embedding.py
+│   │   └── game_rules_embedding.py
+│   └── preprocessing
+│       ├── chunk.py
+│       ├── fintuning.py
+│       └── first.py
+├── finetuning
+│   └── fintuning.py
+└── play
+    ├── data
+    │   ├── chunked_game_rules.json
+    │   ├── game_data.zip
+    │   ├── game_index.faiss
+    │   ├── game_names.json
+    │   ├── game.json
+    │   └── texts.json
+    ├── play.ipynb
+    └── unzip.ipynb
+```
+
+
 <hr>
 
 ## 3. 기술 스택
