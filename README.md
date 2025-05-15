@@ -1,4 +1,4 @@
-# SKN11-3rd-3Team
+![image](https://github.com/user-attachments/assets/bf50ee61-ab80-4d68-bfce-770ba0eff9f8)# SKN11-3rd-3Team
 - 주제 : LLM 기반 보드게임 룰 설명 & 맞춤형 추천 챗봇
 - 개발기간 : 25.05.07~25.05.15
 ---
@@ -11,30 +11,24 @@
 ### 👤 팀원
 <table>
   <thead>
-    <td align="center">
-      <a href="https://github.com/Kimjeongwon12">
-        <img src=""/><br /><hr/>
-        김정원
-      </a><br />
-    </td>
-    <td align="center">
-      <a href="https://github.com/minjung2266">
-        <img src=""/><br /><hr/>
-        이민정
-      </a><br />
-    </td>
-    <td align="center">
-      <a href="https://github.com/Minor1862">
-        <img src=""/><br /><hr/>
-        정민호
-      </a><br />
-    </td>
-    <td align="center">
-      <a href="https://github.com/junoaplus">
-        <img src=""/><br /><hr/>
-        황준호
-      </a><br />
-    </td>
+    <tr>
+      <td align="center">
+        <img src="이미지1_URL" width="100" /><br />
+        <a href="https://github.com/Kimjeongwon12">김정원</a>
+      </td>
+      <td align="center">
+        <img src="이미지2_URL" width="100" /><br />
+        <a href="https://github.com/minjung2266">이민정</a>
+      </td>
+      <td align="center">
+        <img src="이미지3_URL" width="100" /><br />
+        <a href="https://github.com/Minor1862">정민호</a>
+      </td>
+      <td align="center">
+        <img src="이미지4_URL" width="100" /><br />
+        <a href="https://github.com/junoaplus">황준호</a>
+      </td>
+    </tr>
   </thead>
 </table>
 
