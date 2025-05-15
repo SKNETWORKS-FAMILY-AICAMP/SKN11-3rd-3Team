@@ -98,7 +98,7 @@
 → 원하는 서비스에 따라 user가 질문 입력 
 
 2. 문서 검색
-→ Retriver가 받은 질문을 임베딩 후, Vector DB에서 유사한 문장을 질의 
+→ Retriver가 받은 질문을 임베딩 후, FAISS를 통해 유사한 문장을 질의 
 
 3. Prompt 구성 
 → 검색된 정보를 기반으로 LLM에게 전달할 Prompt 구성 
@@ -157,7 +157,7 @@ def download_naver_blog_content(url, save_folder):
 | 전체 문장 띄어쓰기 및 맞춤법               | → 맞춤법 교정, 불필요한 공백 제거, 문장부호 보정 적용              |
 
 
-- 전처리 전 / 전처리 후
+- 전처리 전 / 후
 
 ```
   [{
