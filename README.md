@@ -2,6 +2,21 @@
 - 주제 : LLM 기반 보드게임 룰 설명 & 맞춤형 추천 챗봇
 - 개발기간 : 25.05.07~25.05.15
 ---
+## 📑 Index
+
+1. [팀 소개](#1-팀-소개)
+2. [Overview](#2-overview)
+3. [기술 스택](#3-기술-스택)
+4. [시스템 아키텍처](#4-시스템-아키텍처)
+5. [WBS](#5-wbs)
+6. [요구사항 명세서](#6-요구사항-명세서)
+7. [수집한 데이터 및 전처리 요약](#7-수집한-데이터-및-전처리-요약)
+8. [DB 연동 구현 코드](#8-db-연동-구현-코드-링크)
+9. [테스트 계획 및 결과 보고서](#9-테스트-계획-및-결과-보고서)
+10. [성능 개선 노력](#10-성능-개선-노력)
+11. [추후 개선점](#11-추후-개선점)
+12. [한 줄 회고](#12-한-줄-회고)
+
 
 ## 1. 팀 소개
 ### 팀명 : BoardNavi
@@ -147,7 +162,7 @@ def download_naver_blog_content(url, save_folder):
 
 
 ### 데이터 전처리
-✅ 원본 데이터 전처리 
+✅ **원본 데이터 전처리** 
 - 전처리 형식
 
 | 원본 형태                             | 변환 방식                                          |
@@ -182,7 +197,7 @@ def download_naver_blog_content(url, save_folder):
 }]
 ```
 
-✅ vectorDB 전처리
+✅ **vectorDB 전처리**
 -  게임 추천 기능 : 원본 데이터 전처리와 동일하게 진행함. 
 
 
@@ -198,8 +213,8 @@ def download_naver_blog_content(url, save_folder):
   ```
 
 
-✅ finetunning 전처리
-- 전처리 전 / 전처리 후
+✅ **finetunning 전처리**
+- 전처리 전 / 후
 ```
 [
   {
@@ -224,7 +239,27 @@ def download_naver_blog_content(url, save_folder):
 
 
 ## 9. 테스트 계획 및 결과 보고서
-(상황별 사진 첨부)
+
+### 기능 1. 유사도 기반 게임 추천
+#### 🎯 상황별 질문 
+
+| 상황 | 캡처 이미지 |
+|------|-------------|
+| 전략 게임 추천 요청 | ![전략 게임 추천](https://github.com/user-attachments/assets/e9bf97dc-ecca-4f97-b182-cb69eb4429a2) | 
+| 쉬운 카드게임 추천 요청 | ![쉬운 카드게임 추천](https://github.com/user-attachments/assets/cc092575-8174-4205-a8a7-75934d256458) | 
+| 다양한 추천 요청 | ![다양한 추천](https://github.com/user-attachments/assets/3f46649e-c980-4bbe-9346-98ff8197676a) |
+| 룰 설명 요청 | ![룰 설명](https://github.com/user-attachments/assets/0f53f99f-a7e6-4e37-b040-b22444661eec) |
+
+
+### 기능 2. 게임 룰 설명
+#### 🎯 세부적인 질문 예시
+
+| 상황 | 캡처 이미지 |
+|------|-------------|
+| 특정 게임 내 점수 계산 질문 | ![점수 계산 질문](https://github.com/user-attachments/assets/2c53bcc1-f098-4a59-ae3c-a50c2c19f43f) |
+| 카드 사용 조건 질문 | ![카드 조건 질문](https://github.com/user-attachments/assets/5cd94b44-ff60-4040-b440-56ff44491c2e) |
+| 게임 진행 중 행동 가능 여부 질문 | ![행동 가능 여부](https://github.com/user-attachments/assets/fce9bb43-7ef1-4a4e-8800-1f8e8a83072e) |
+| 규칙 예외 상황 질문 | ![예외 상황 질문](https://github.com/user-attachments/assets/26abde1a-5014-4fa4-8e02-19e51b1317d7) |
 
 
 ## 10. 성능 개선 노력
@@ -235,45 +270,49 @@ def download_naver_blog_content(url, save_folder):
 
 3. **fine tunning 성능 개선**
 
-**[파인튜닝 모델]**
-- base model: gpt-3.5-turbo-0125
-- training method: Supervised Fine-Tuning (SFT)
-- train token: 3,992,712 tokens
-- output model : ft:gpt-3.5-turbo-0125:tset::BX2RnWfq
-  : 초기에는 한국어에 특화된 오픈소스 모델인 KoAlpaca를 활용해 파인튜닝을 진행하였으나, 실제 추론 결과에서 질문과 무관한 답변을 생성하거나, 규칙과 동떨어진 응답을 출력하는 문제가 발생하였습니다.
-```
-# koAlpaca 사용
-[질문]: 이 게임의 규칙을 설명해줘
-[최종 응답]: 이 게임은 가족들과 함께하는 따뜻한 보드게임입니다. 카드를 섞고 나누며 서로의 감정을 나누는 것이 핵심입니다. 승패보다는 모두가 즐겁게 참여하는 것이 중요합니다. 점수를 계산할 필요는 없으며, 규칙은 자유롭게 정하면 됩니다. 웃음과 배려가 가장 중요한 규칙입니다.
-```
-이에 따라 안정적인 언어 이해 및 규칙 기반 응답 생성을 위해 gpt-3.5-turbo를 활용한 파인튜닝을 진행했습니다.
-```
-# gpt3.5-turbo 사용
-[최종 응답]: 이 게임은 '뱅'이라는 서부 총격전을 소재로 한 보드게임입니다. 게임의 목적은 보안관, 부관, 무법자, 배신자 중 누군가가 목표를 이루면 게임에서 승리하게 됩니다. 총알 토큰(생명)을 모두 잃은 사람은 게임에서 탈락하게 됩니다. 
-(중략)
-...
-```
+   **[파인튜닝 모델]**
+  - base model: gpt-3.5-turbo-0125
+  - training method: Supervised Fine-Tuning (SFT)
+  - train token: 3,992,712 tokens
+  - output model : ft:gpt-3.5-turbo-0125:tset::BX2RnWfq
 
-```  
-# 파인튜닝 설정
-training_args = TrainingArguments(
-    output_dir='./fine_tuned_model',
-    num_train_epochs=5,
-    per_device_train_batch_size=2,
-    gradient_accumulation_steps=8,
-    learning_rate=5e-5,
-    fp16=True,
-    logging_dir='./logs',
-    logging_steps=10,
-    save_steps=500,
-    save_total_limit=3,
-)
+    ![image](https://github.com/user-attachments/assets/36490fa2-4300-4a99-9a83-1e4741a53bb0)
+    ![image](https://github.com/user-attachments/assets/78db9bd9-6ee4-4c2d-a3c6-177ce2176685)
 
-```
 
-## 11. 시연 페이지
+  
+  초기에는 한국어에 특화된 오픈소스 모델인 KoAlpaca를 활용해 파인튜닝을 진행하였으나, 실제 추론 결과에서 질문과 무관한 답변을 생성하거나, 규칙과 동떨어진 응답을 출력하는 문제가 발생하였습니다.
+  ```
+  # koAlpaca 사용
+  [질문]: 이 게임의 규칙을 설명해줘
+  [최종 응답]: 이 게임은 가족들과 함께하는 따뜻한 보드게임입니다. 카드를 섞고 나누며 서로의 감정을 나누는 것이 핵심입니다. 승패보다는 모두가 즐겁게 참여하는 것이 중요합니다. 점수를 계산할 필요는 없으며, 규칙은 자유롭게 정하면 됩니다. 웃음과 배려가 가장 중요한 규칙입니다.
+  ```
+  이에 따라 안정적인 언어 이해 및 규칙 기반 응답 생성을 위해 gpt-3.5-turbo를 활용한 파인튜닝을 진행했습니다.
+  ```
+  # gpt3.5-turbo 사용
+  [최종 응답]: 이 게임은 '뱅'이라는 서부 총격전을 소재로 한 보드게임입니다. 게임의 목적은 보안관, 부관, 무법자, 배신자 중 누군가가 목표를 이루면 게임에서 승리하게 됩니다. 총알 토큰(생명)을 모두 잃은 사람은 게임에서 탈락하게 됩니다. 
+  (중략)
+  ...
+  ```
+  
+  ```  
+  # 파인튜닝 설정
+  training_args = TrainingArguments(
+      output_dir='./fine_tuned_model',
+      num_train_epochs=5,
+      per_device_train_batch_size=2,
+      gradient_accumulation_steps=8,
+      learning_rate=5e-5,
+      fp16=True,
+      logging_dir='./logs',
+      logging_steps=10,
+      save_steps=500,
+      save_total_limit=3,
+  )
+  
+  ```
 
-## 12. 추후 개선점
+## 11. 추후 개선점
 #### 1. 사용자 인터렉션 강화
 - 꼬리질문 대응을 위해 세션 상태 유지
 - 자주 선택한 게임 유형을 저장해 개인화 추천 강화
@@ -286,12 +325,12 @@ training_args = TrainingArguments(
 - 비용 절감을 위해 다른 모델 적용 방법을 모색
 - 꼬리질문 대응에 특화된 LoRA 개선
 
-## 13. 한 줄 회고                                                                                                               
+## 12. 한 줄 회고                                                                                                               
 >  김정원 : LLM을 사용만 해보고 개발하는 것은 처음이라 관련 지식들을 처음 접하는 것이 많았습니다. 이번 프로젝트를 진행하면서 개발 프로세스를 어떻게 잡아야 하는지, 수많은 임베딩, RAG, LLM 모델 중에서 어떤 모델을 사용해야 우리의 프로젝트 결과물에 가장 우수한 성능을 낼 수 있는지 알 수 있었습니다. GPU 자원과 시간이 한정적이라 A-Z로 완벽히 구축하지 못한 것 같아 아쉽지만 이후에 어떻게 발전시킬 지 생각해 볼 수 있었던 시간이었습니다. 
 >
-> 이민정 : 여러 모델을 바꿔가며 RAG의 성능을 확인하는 과정에서 단순히 성능이 좋다는 모델보다는 내가 필요한 목적에 따라 알맞게 모델을 선택해야 함을 알게 되었습니다. 또 gpu 자원과 시간이 한정되어 있어 여러번 테스트 해보지 못한점이 아쉬움이 남습니다.
+> 이민정 : 여러 모델을 바꿔가며 RAG의 성능을 확인하는 과정에서 단순히 성능이 좋다는 모델보다는 내가 필요한 목적에 따라 알맞게 모델을 선택해야 함을 알게 되었습니다. 또 gpu 자원과 시간이 한정되어 있어 여러번 테스트 해보지 못한 점이 아쉬움이 남습니다.
 >
 >  정민호 : 수업에서 배운 LLM 분야를 직접 응용해볼 수 있어 의미있는 경험이 된것 같습니다.                                                                                
 >
->  황준호 : 
+>  황준호 : 여러 모델을 파인튜닝 해보면서 모델마다 설정해줘야 할 것도 다르고 시간도 다르고 방법도 달라서 어려웠습니다. 하지만 파인튜닝만 5번 이상을 해보면서 점점 손에 익어가는 유익한 시간 이였습니다.
 
