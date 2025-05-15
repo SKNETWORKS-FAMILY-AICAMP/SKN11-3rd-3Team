@@ -24,6 +24,8 @@
 
 
 ### 👤 팀원
+![image](https://github.com/user-attachments/assets/dd3dbf0d-d5e6-4754-ba53-2bb43ccb3bf5)
+
 <table>
   <tr>
     <td align="center">
